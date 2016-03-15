@@ -221,7 +221,7 @@ checkMachineRunning ()
 {
   echoInfo "machine running ... \t\t\t"
 
-  machine_state=$(docker-machine ls | sed 1d | grep "^$1\s" | awk '{print $4}')
+  machine_state=$(docker-machine ls | sed 1d | grep "^$1\s" | awk '{print $5}')
 
   if [ "Running" != "${machine_state}" ]; then
     echoError "The machine '$1' is not running but '${machine_state}'!";
@@ -236,7 +236,7 @@ checkMachineRunning ()
 # @return:  The driver used to create the machine
 getMachineDriver ()
 {
-  docker-machine ls | sed 1d | grep "^$1\s" | awk '{print $3}'
+  docker-machine ls | sed 1d | grep "^$1\s" | awk '{print $4}'
 }
 
 # @info:    Loads mandatory properties from the docker machine
